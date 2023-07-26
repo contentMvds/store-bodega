@@ -45,8 +45,8 @@ export const imageContent = styled("div")`
   justify-content: center;
   margin-top: 6px;
   img {
-    height: 113.985px;
-    width: 121.173px;
+    height: 7.124rem;
+    width: 7.573rem;
   }
 `;
 export const infoProductContent = styled("div")`

@@ -9,10 +9,10 @@ export const main = styled("main")`
   margin: 0 14.313rem;
   text-align: left;
   @media only screen and (max-width: ${breakpoints.md}) {
-    margin: 0 20px;
+    margin: 0 1.25rem;
   }
   @media (min-width: ${breakpoints.md}) and (max-width: ${breakpoints.xl}) {
-    margin: 0 56px;
+    margin: 0 3.5rem;
   }
   @media screen and (min-width: ${breakpoints.xxl}) {
     margin: 0 34.313rem;
@@ -64,12 +64,12 @@ export const imageContent = styled("div")`
     height: 18.25rem;
     width: 24.125rem;
     @media only screen and (max-width: ${breakpoints.md}) {
-      width: 292px;
-      height: 252.41px;
+      width: 18.25rem;
+      height: 15.776rem;
     }
     @media screen and (min-width: ${breakpoints.xxl}) {
-      width: 392px;
-      height: 352.41px;
+      width: 24.5rem;
+      height: 22.026rem;
     }
   }
 `;
