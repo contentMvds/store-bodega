@@ -1,95 +1,93 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import logo from "../../assets/Logo.svg";
-import banner from "../../assets/img-princ.svg";
-import Card from '../../components/Card/Card';
 
-const mock = {
-  id: "1",
-  name: "Bota Western Preta Couro Cano Médio",
-  price: 44999,
-  image: "https://usaflextatix.vtexassets.com/arquivos/ids/490685-1600-auto",
-  category: "botas",
-  installments: [
-    {
-      quantity: 1,
-      value: 44999,
-    },
-    {
-      quantity: 6,
-      value: 7498,
-    },
-  ],
-};
+import logo from "../../assets/Logo.png";
+
+import Card from "../../components/Card/Card";
+import Spinner from "../../components/Spinner/Spinner";
+import Notification from "../../components/Notification/Notification";
+
+import * as S from "./home.style";
 
 export default function Home() {
-  console.log("welcome to Home");
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(false);
+
+  const [showNotification, setShowNotification] = useState(false);
+  const [message, setMessage] = useState("");
+  console.log("tela de produtos");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`/products`, {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            accept: "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`Error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        setError(true);
+        setShowNotification(true);
+        setMessage(
+          "Erro ao requisitar informações dos produtos, se o problema persistir contate o administrador"
+        );
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (products.length === 0 && !showNotification) {
+    return (
+      <div style={{ margin: "10rem auto" }}>
+        Loading ... <Spinner />
+      </div>
+    );
+  }
+
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Home | Store Bodega</title>
       </Helmet>
-      <div>
-        <header
-          style={{
-            position: "relative",
-            height: "285px",
-            width: "100%",
-            display: "grid",
-            gridTemplateRows: "3fr auto",
-            padding: "12px",
-          }}
-        >
-          <img
-            src={banner}
-            alt={`Imagem banner for section`}
-            style={{
-              // height: '246px',
-              width: "100%",
-              position: "absolute",
-              zIndex: 0,
-            }}
-          />
-          <img
-            src={logo}
-            alt="Logo da store Budega"
-            style={{
-              zIndex: 1,
-              position: "relative",
-              height: "33px",
-              marginLeft: "68px",
-            }}
-          />
-          <div
-            style={{
-              position: "relative",
-              zIndex: 2,
-              color: "#fff",
-              textAlign: "right",
-              marginRight: "118px",
-            }}
-          >
-            {" "}
-            <h1>Category</h1>
-          </div>
-        </header>
-        <main style={{
-         display:'grid',
-         gridTemplateRows: '1fr 1fr', 
-         margin: '0 229px'
-        }}>
-          <section>
-            <div style={{
-              padding: '27px 0 33px 0'
-            }}>
-              <h3 style={{margin: '0'}}>Ofertas especiais</h3>
-              <p style={{margin: '0'}}>Os melhores preços</p>
-            </div>
-            <article><Card id={mock.id} imageUrl={mock.image} name={mock.name} values={mock.installments} /></article>
-          </section>
-        </main>
-      </div>
+      <S.headerContent>
+        <img src={logo} alt="Logo da store Budega" />
+        <S.titleCategory>Category</S.titleCategory>
+      </S.headerContent>
+      <S.contentMain>
+        <section>
+          <S.titleSession>
+            <h3>Ofertas especiais</h3>
+            <span>Os melhores preços</span>
+          </S.titleSession>
+          {products.length > 0 ? (
+            <S.dataListCard>
+              {products.map((items) => {
+                return (
+                  <Card
+                    key={items.id}
+                    id={items.id}
+                    imageUrl={items.image}
+                    name={items.name}
+                    values={items.installments}
+                  />
+                );
+              })}
+            </S.dataListCard>
+          ) : (
+            <h1>Não foi encontrado nenhum item</h1>
+          )}
+        </section>
+      </S.contentMain>
+      {error && <Notification show={showNotification} message={message} />}
     </>
   );
 }

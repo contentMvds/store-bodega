@@ -1,6 +1,10 @@
 {
   "name": "store-bodega",
   "version": "0.1.0",
+  "author": {
+    "email": "marcili.victor@dbccompany.com.br",
+    "name": "Marcilio Victor"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -10,7 +14,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-router": "^6.14.2",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.3",
@@ -43,5 +46,6 @@
   },
   "resolutions": {
     "styled-components": "^5"
-  }
+  },
+  "proxy": "https://sample-store-api.usaflexdigital.workers.dev"
 }

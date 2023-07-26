@@ -1,1 +1,0 @@
-export const apiUrl = "https://sample-store-api.usaflexdigital.workers.dev";
