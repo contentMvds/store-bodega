@@ -7,7 +7,7 @@ import bannerMobile from "../../assets/img-princ-mobile.png";
 export const headerContent = styled("header")`
   position: relative;
   width: 100%;
-  height: 285px;
+  height: 17.813rem;
   display: grid;
   grid-template-rows: 3fr auto;
   padding: 12px;
@@ -18,18 +18,18 @@ export const headerContent = styled("header")`
   background-repeat: no-repeat;
   @media only screen and (max-width: ${breakpoints.md} ) {
     background-image: url(${bannerMobile});
-    height: 314.92034912109375px;
+    height: 19.683rem;
   }
 
   img {
     position: relative;
     height: 33px;
-    margin-left: 68px;
+    margin-left: 4.25rem;
     @media only screen and (max-width: ${breakpoints.md}) {
       margin-left: 4px;
     }
     @media (min-width: ${breakpoints.md}) and (max-width: ${breakpoints.xl}) {
-    margin-left: 56px;
+    margin-left: 3.5rem;
   }
   }
 `;
@@ -42,7 +42,7 @@ export const titleCategory = styled("h1")`
   line-height: normal;
   font-family: Prata;
   text-align: right;
-  margin-right: 118px;
+  margin-right: 7.375rem;
   @media only screen and (max-width: ${breakpoints.md}) {
     text-align: left;
     margin-left: 4px;
@@ -59,10 +59,10 @@ export const contentMain = styled("main")`
   grid-template-rows: auto;
   margin: 0 14.313rem;
   @media only screen and (max-width: ${breakpoints.md}) {
-    margin: 0 16px;
+    margin: 0 1rem;
   }
   @media (min-width: ${breakpoints.md}) and (max-width: ${breakpoints.xl}) {
-    margin: 0 56px;
+    margin: 0 3.5rem;
   }
   @media screen and (min-width: ${breakpoints.xxl}) {
     margin: 0 34.313rem;
