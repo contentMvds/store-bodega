@@ -15,7 +15,6 @@ export default function Home() {
 
   const [showNotification, setShowNotification] = useState(false);
   const [message, setMessage] = useState("");
-  console.log("tela de produtos");
 
   useEffect(() => {
     const fetchProducts = async () => {

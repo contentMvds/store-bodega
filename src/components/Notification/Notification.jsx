@@ -8,7 +8,7 @@ export default function Notification({ show, message }) {
     if (show) {
       toast(message);
     }
-  }, [show]);
+  }, [message, show]);
 
   return (
     <div>
